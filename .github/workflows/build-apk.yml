@@ -21,6 +21,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: false   # تجنب مشكلة عدم وجود package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prebuild Android project (Expo)
+        run: npx expo prebuild --platform android --non-interactive --clean
+        # --clean يحذف المجلدات القديمة ويُنشئها من الصفر
+        # --non-interactive يتجنب أي مطالبات تفاعلية
+
       - name: Grant execute permission for gradlew
         run: chmod +x android/gradlew
 
