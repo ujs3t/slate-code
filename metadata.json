@@ -1,0 +1,6 @@
+{
+  "name": "Slate",
+  "description": "تطبيق Slate لمشاهدة وتحميل الأفلام والمسلسلات",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#121212">
+    <title>Slate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader-wrapper"><div class="loader-spinner"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div></div>
+
+    <div class="search-screen">
+        <div class="search-menu-btn ios-glow" id="searchMenuBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+        <div class="downloads-menu-btn ios-glow" id="downloadsMenuBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+        </div>
+        <div class="logo-container"><span class="letter-s">S</span><span class="word-rest">late</span></div>
+        <div class="search-wrapper">
+            <div class="search-container">
+                <div class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg></div>
+                <input type="text" id="searchInput" class="search-input" placeholder="اكتب ما تريد ان تبحثه" autocomplete="off">
+                <button type="button" id="searchClearBtn" class="search-clear-btn" style="display:none;" aria-label="مسح">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <div class="search-results" id="searchResults"><div class="scroll-inner" id="scrollInner"></div></div>
+        </div>
+
+        <div class="main-shortcuts">
+            <div class="shortcut-btn ios-glow" id="favBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                <span>المفضلة</span>
+            </div>
+            <div class="shortcut-btn ios-glow" id="historyBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>السجل</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="list-screen">
+        <div class="list-loader" id="listLoader"><div class="loader-spinner"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div></div>
+        <div class="back-button ios-glow" id="listBackBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg></div>
+        <div class="list-header">
+            <h2 class="list-title" id="listTitle">المفضلة</h2>
+        </div>
+        <div class="list-grid" id="listGrid"></div>
+    </div>
+
+    <div id="details-screen">
+        <div class="details-loader" id="detailsLoader"><div class="loader-spinner"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div></div>
+        <div class="details-content" id="detailsContent">
+            <div class="back-button ios-glow" id="backButton"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg></div>
+            <div class="menu-button ios-glow" id="detailsMenuBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+            <div class="details-hero"><img id="detailsBackdrop" class="details-backdrop" src="" alt="Backdrop"><div class="details-hero-overlay"></div></div>
+            <div class="details-info-card">
+                <img id="detailsPoster" class="details-poster" src="" alt="Poster">
+                <h1 id="detailsTitle" class="details-title"></h1>
+                <div class="details-meta">
+                    <span id="detailsYear" class="meta-badge"></span>
+                    <span id="detailsType" class="meta-badge"></span>
+                    <span id="detailsDuration" class="meta-badge"></span>
+                    <span class="meta-badge"><span class="rating-star">★</span> <span id="detailsRating">9.1</span></span>
+                </div>
+                <div class="details-actions">
+                    <button class="play-button" id="playButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z" /></svg> تشغيل الآن</button>
+                    <div class="fav-button ios-glow" id="favButton"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg></div>
+                    <div class="download-detail-btn ios-glow" id="downloadDetailBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="details-extra-info">
+                <h3 class="section-title">القصة</h3><p id="detailsPlot" class="plot-text"></p>
+                <div class="info-grid">
+                    <div class="info-item"><div class="info-label">المشاهدات</div><div class="info-value" id="detailsViews"></div></div>
+                    <div class="info-item"><div class="info-label">الإعجابات</div><div class="info-value" id="detailsLikes"></div></div>
+                </div>
+            </div>
+            <div class="details-extra-info">
+                <h3 class="section-title">اقتراحات أخرى</h3><div class="suggestions-list" id="suggestionsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="episodes-screen">
+        <div class="back-button ios-glow" id="epBackButton"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg></div>
+        <div class="ep-header">
+            <h2 class="ep-title" id="epAnimeTitle"></h2>
+            <p class="ep-subtitle">اختر الحلقة التي تريد مشاهدتها</p>
+        </div>
+        <div class="seasons-tabs" id="seasonsTabs"></div>
+        <div class="episodes-list" id="episodesList"></div>
+    </div>
+
+    <div id="downloads-screen">
+        <div class="back-button ios-glow" id="downloadsBackBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg></div>
+        <div class="downloads-header">
+            <h2 class="downloads-title">التحميلات</h2>
+            <p class="downloads-subtitle">إدارة ومتابعة تحميلاتك للأفلام والمسلسلات</p>
+        </div>
+        <div class="downloads-tabs">
+            <div class="downloads-tab active" id="tabActive">التحميلات الجارية</div>
+            <div class="downloads-tab" id="tabCompleted">التحميلات المكتملة</div>
+        </div>
+        <div class="battery-opt-banner ios-glow" id="batteryOptBanner">
+            <div class="battery-opt-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+            </div>
+            <div class="battery-opt-text">
+                <div class="battery-opt-title">تحسين استمرار التحميل بالخلفية</div>
+                <div class="battery-opt-sub">انقر هنا للسماح بالتحميل المستمر دون توقف في الخلفية</div>
+            </div>
+        </div>
+        <div class="downloads-loading-overlay" id="downloadsLoadingOverlay" style="display:none;">
+            <div class="downloads-spinner"></div>
+            <span class="downloads-loading-text">جاري التحقق من التحميلات والملفات...</span>
+        </div>
+        <div class="downloads-list" id="downloadsListContainer">
+            <!-- Download items will be rendered here dynamically -->
+        </div>
+    </div>
+
+    <!-- Seasons Download Selection Modal (Bottom Sheet / In-App Modal) -->
+    <div class="custom-confirm-overlay" id="seasonsDownloadOverlay">
+        <div class="custom-confirm-box ios-glow seasons-download-box" id="seasonsDownloadBox">
+            <h3 class="confirm-title" style="margin-bottom: 4px;">تحميل المسلسل</h3>
+            <p class="seasons-modal-subtitle" id="seasonsModalSubtitle">اختر طريقة التحميل</p>
+            
+            <button class="download-all-seasons-btn ios-glow" id="downloadAllSeasonsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                <span>تحميل المسلسل كامل</span>
+            </button>
+
+            <div class="seasons-modal-divider"></div>
+
+            <div class="seasons-modal-list" id="seasonsModalList">
+                <!-- Seasons items will be rendered here dynamically -->
+            </div>
+
+            <button class="confirm-btn confirm-btn-cancel" id="seasonsModalCloseBtn" style="margin-top: 15px; width: 100%;">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- Downloaded Series Episodes Modal (Offline Series Viewer) -->
+    <div class="custom-confirm-overlay" id="downloadedSeriesOverlay">
+        <div class="custom-confirm-box ios-glow downloaded-series-box" id="downloadedSeriesBox">
+            <div class="downloaded-series-header">
+                <div class="downloaded-series-poster-wrap" id="downloadedSeriesPosterWrap">
+                    <img id="downloadedSeriesPosterImg" src="" alt="Poster" class="downloaded-series-poster" style="display:none;" />
+                    <div id="downloadedSeriesPosterPlaceholder" class="downloaded-series-poster-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H4.5c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h16.5m-16.5 0c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125m16.5-6.75c-.621 0-1.125.504-1.125 1.125v4.5c0 .621.504 1.125 1.125 1.125" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="downloaded-series-info">
+                    <h3 class="downloaded-series-title" id="downloadedSeriesTitle">اسم المسلسل</h3>
+                    <div class="downloaded-series-meta" id="downloadedSeriesMeta">3 حلقات محملة • 1.2 GB</div>
+                </div>
+            </div>
+            
+            <div class="seasons-modal-divider"></div>
+
+            <div class="downloaded-episodes-list" id="downloadedEpisodesList">
+                <!-- Episodes rendered here dynamically -->
+            </div>
+
+            <button class="confirm-btn confirm-btn-cancel" id="downloadedSeriesCloseBtn" style="margin-top: 14px; width: 100%;">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- Quality Selection Modal -->
+    <div class="custom-confirm-overlay" id="qualitySelectOverlay">
+        <div class="custom-confirm-box ios-glow" id="qualitySelectBox">
+            <h3 class="confirm-title" style="margin-bottom: 4px;">اختر الجودة</h3>
+            <p class="seasons-modal-subtitle" id="qualityModalSubtitle">اختر دقة التحميل المفضلة</p>
+            
+            <div class="seasons-modal-list" id="qualityModalList" style="max-height: 250px; overflow-y: auto; margin-top: 15px;">
+                <!-- Quality items will be rendered here -->
+            </div>
+
+            <div class="modal-buttons-row">
+                <button class="modal-action-btn modal-btn-cancel" id="qualityModalCloseBtn">إلغاء</button>
+                <button class="modal-action-btn modal-btn-confirm ios-glow" id="qualityModalConfirmBtn">تحميل</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box ios-glow" id="modalBox">
+            <div class="modal-content" id="modalContent">
+                <div id="settingsSection" style="display: none;">
+                    <h3 class="modal-title">الإعدادات</h3>
+                    <div class="perf-toggle-container">
+                        <div><div class="perf-label">تسريع الموقع</div><div class="perf-sublabel">للأجهزة الضعيفة (يوقف البلور)</div></div>
+                        <label class="ios-switch"><input type="checkbox" id="perfToggle"><span class="slider"></span></label>
+                    </div>
+                </div>
+                <button class="modal-close-btn" id="modalCloseBtn">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom In-App Glassmorphism Confirm Modal -->
+    <div class="custom-confirm-overlay" id="confirmModalOverlay">
+        <div class="custom-confirm-box ios-glow" id="customConfirmBox">
+            <div class="confirm-icon-wrap" id="confirmIconWrap">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </div>
+            <h3 class="confirm-title" id="confirmDialogTitle">إلغاء التحميل</h3>
+            <p class="confirm-message" id="confirmDialogMessage">هل تريد بالتأكيد إلغاء وحذف هذا التحميل؟</p>
+            <div class="confirm-buttons-row">
+                <button class="confirm-btn confirm-btn-danger" id="confirmDialogOkBtn">إلغاء التحميل</button>
+                <button class="confirm-btn confirm-btn-cancel" id="confirmDialogCancelBtn">تراجع</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="player-screen">
+        <div class="player-video-area" id="playerVideoArea">
+            <video id="realVideo" playsinline poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
+
+            <div class="player-loader" id="playerLoader"><div class="loader-spinner"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div></div>
+
+            <div class="skip-indicator skip-left" id="skipLeft">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
+                <span>10ث</span>
+            </div>
+            <div class="skip-indicator skip-right" id="skipRight">
+                <span>10ث</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M13 6v12l8.5-6L13 6zm-.5 6L4 6v12l8.5-6z"/></svg>
+            </div>
+
+            <div class="skip-segment-btn hidden ios-glow" id="skipSegmentBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                <span id="skipSegmentText">تخطي</span>
+            </div>
+
+            <div class="speed-indicator" id="speedIndicator">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
+                <span>2x</span>
+            </div>
+
+            <div class="sub-overlay" id="subOverlay">
+                <div class="sub-text" id="subText"></div>
+            </div>
+
+            <div class="player-center-icon ios-glow" id="centerPlayIcon">
+                <svg id="centerPlayIconPlay" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                <svg id="centerPlayIconPause" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" /></svg>
+            </div>
+
+            <div class="player-gesture-capsule ios-glow hidden" id="playerGestureCapsule">
+                <div class="capsule-content">
+                    <span class="capsule-icon" id="capsuleIcon"></span>
+                    <div class="capsule-bar-container">
+                        <div class="capsule-bar-fill" id="capsuleBarFill"></div>
+                    </div>
+                    <span class="capsule-percent" id="capsulePercent">50%</span>
+                </div>
+            </div>
+
+            <div class="player-lock-overlay ios-glow hidden" id="playerLockOverlay">
+                <div class="lock-glow-shine"></div>
+                <div class="lock-overlay-content">
+                    <div class="animated-lock-container" id="animatedLockContainer">
+                        <svg class="animated-lock-svg" viewBox="0 0 32 32" width="32" height="32">
+                            <path class="animated-lock-shackle" id="lockShacklePath" d="M10 14V8.5a6 6 0 0 1 12 0V14" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                            <rect class="animated-lock-body" x="6" y="13" width="20" height="15" rx="3.5" fill="#ffffff" />
+                            <circle cx="16" cy="19" r="1.8" fill="#1c1c1e" />
+                            <polygon points="15,19 17,19 17.5,23.5 14.5,23.5" fill="#1c1c1e" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-menu ios-glow" id="settingsMenu">
+                <div class="settings-inner">
+                    <div class="settings-row" id="qualityRow" style="display: none;">
+                        <div class="settings-label">جودة الفيديو</div>
+                        <div class="options-row" id="qualityOptions"></div>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="settings-label">التخطي التلقائي (Auto Skip)</div>
+                        <div class="toggle-row" style="margin-top: 10px;">
+                            <div class="perf-sublabel" style="color: #fff; font-size: 13px;">تخطي المقدمة (Intro)</div>
+                            <label class="ios-switch"><input type="checkbox" id="skipIntroToggle"><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row" style="margin-top: 10px;">
+                            <div class="perf-sublabel" style="color: #fff; font-size: 13px;">تخطي النهاية (Outro)</div>
+                            <label class="ios-switch"><input type="checkbox" id="skipOutroToggle"><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row" style="margin-top: 10px;">
+                            <div class="perf-sublabel" style="color: #fff; font-size: 13px;">Family Cut (تخطي المشاهد)</div>
+                            <label class="ios-switch"><input type="checkbox" id="skipCutsToggle"><span class="slider"></span></label>
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="settings-label">حجم الخط <span id="sizeValue">20px</span></div>
+                        <input type="range" id="sizeSlider" class="settings-slider" min="12" max="50" value="20">
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-label">نوع الخط</div>
+                        <select id="fontSelect" class="settings-select">
+                            <option value="'Readex Pro', sans-serif">الافتراضي (Readex Pro)</option>
+                            <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
+                            <option value="'IBM Plex Sans Arabic', sans-serif">آي بي إم عربي (IBM Plex)</option>
+                            <option value="'Cairo', sans-serif">القاهرة (Cairo)</option>
+                            <option value="'Outfit', sans-serif">أوتفيت (Outfit)</option>
+                            <option value="Tahoma, sans-serif">تاهوما (Tahoma)</option>
+                        </select>
+                        <label class="upload-btn" for="fontUpload">رفع خط مخصص (TTF/OTF)</label>
+                        <input type="file" id="fontUpload" class="hidden-file-input" accept=".ttf, .otf, .woff">
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-label">لون النص</div>
+                        <div class="options-row" id="colorOptions">
+                            <button class="opt-color active" data-color="#ffffff" style="background:#ffffff"></button>
+                            <button class="opt-color" data-color="#FFD60A" style="background:#FFD60A"></button>
+                            <button class="opt-color" data-color="#0A84FF" style="background:#0A84FF"></button>
+                            <button class="opt-color" data-color="#30D158" style="background:#30D158"></button>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-label">لون الخلفية</div>
+                        <div class="options-row" id="bgOptions">
+                            <button class="opt-btn" data-bg="transparent">شفاف</button>
+                            <button class="opt-btn active" data-bg="rgba(0,0,0,0.6)">نصف شفاف</button>
+                            <button class="opt-btn" data-bg="rgba(0,0,0,0.9)">معتم</button>
+                        </div>
+                    </div>
+                    <div class="settings-row toggle-row">
+                        <div class="settings-label">إضافة حدود للنص (Stroke)</div>
+                        <label class="ios-switch"><input type="checkbox" id="strokeToggle"><span class="slider"></span></label>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-label">ارتفاع الترجمة يدوياً</div>
+                        <input type="range" id="posSlider" class="settings-slider" min="10" max="300" value="80">
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-label">ترجمة خارجية</div>
+                        <label class="upload-btn" for="subUpload">رفع ملف ترجمة (SRT/VTT/ASS)</label>
+                        <input type="file" id="subUpload" class="hidden-file-input" accept=".srt, .vtt, .ass, .ssa, .txt">
+                        <div class="sub-source-container" id="subSourceContainer">
+                            <div class="sub-file-name" id="customSubName"></div>
+                            <div class="options-row">
+                                <button class="opt-btn active" data-subsource="site">ترجمة الموقع</button>
+                                <button class="opt-btn" data-subsource="custom">ترجمة مخصصة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-controls" id="playerControls">
+                <div class="player-top-bar">
+                    <div class="player-title" id="playerTitle">Attack on Titan</div>
+                    <div class="player-buttons">
+                        <div class="player-btn ios-glow" id="downloadPlayerBtn" title="تحميل">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        </div>
+                        <div class="player-btn ios-glow" id="subtitleBtn" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z"/></svg></div>
+                        <div class="player-btn ios-glow" id="settingsBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a6.759 6.759 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.213-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
+                        <div class="player-btn ios-glow" id="fullscreenBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg></div>
+                        <div class="player-btn ios-glow" id="closePlayerBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></div>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <span class="time-text" id="currentTimeText">0:00</span>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-markers" id="progressMarkers"></div>
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-thumb" id="progressThumb"></div>
+                    </div>
+                    <span class="time-text" id="durationTimeText">0:00</span>
+                </div>
+                <div class="player-center-controls">
+                    <div class="player-center-btn ios-glow" id="rewindBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg></div>
+                    <div class="play-pause-btn ios-glow" id="playPauseBtn">
+                        <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        <svg id="pauseIcon" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" /></svg>
+                    </div>
+                    <div class="player-center-btn ios-glow" id="forwardBtn"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M13 6v12l8.5-6L13 6zm-.5 6L4 6v12l8.5-6z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bridge.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
