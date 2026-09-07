@@ -22,7 +22,13 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for gradlew
-        run: chmod +x android/gradlew
+        run: |
+          if [ -f android/gradlew ]; then
+            chmod +x android/gradlew
+          else
+            echo "android/gradlew not found. Ensure the Android project is in the repository."
+            exit 1
+          fi
 
       - name: Build APK with Gradle
         run: |
@@ -34,3 +40,4 @@ jobs:
         with:
           name: app-release-apk
           path: android/app/build/outputs/apk/release/*.apk
+سسس
