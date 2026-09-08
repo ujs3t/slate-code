@@ -21,6 +21,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 1️⃣ تجهيز بيئة Node.js لبناء واجهة المحادثة
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # 2️⃣ تثبيت مكتبات الواجهة الأمامية
+      - name: Install Web Dependencies
+        run: npm ci
+
+      # 3️⃣ بناء ملفات الويب (HTML/CSS/JS) ونقلها إلى مجلد assets
+      - name: Build Web Assets
+        run: npm run build
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -51,4 +66,3 @@ jobs:
             app/build/outputs/apk/release/*.apk
           if-no-files-found: error
           retention-days: 7
-          compression-level: 6
