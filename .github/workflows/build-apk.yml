@@ -2,11 +2,11 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   workflow_dispatch:
     inputs:
       buildType:
-        description: 'نوع البناء'
+        description: 'نوع البناء (Debug أو Release)'
         required: true
         default: 'debug'
         type: choice
@@ -20,21 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # 1️⃣ تجهيز بيئة Node.js لبناء واجهة المحادثة
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      # 2️⃣ تثبيت مكتبات الواجهة الأمامية
-      - name: Install Web Dependencies
-        run: npm ci
-
-      # 3️⃣ بناء ملفات الويب (HTML/CSS/JS) ونقلها إلى مجلد assets
-      - name: Build Web Assets
-        run: npm run build
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
