@@ -34,6 +34,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      - name: Decode Debug Keystore
+        run: base64 -d debug.keystore.base64 > debug.keystore
+
       - name: Build APK (Debug)
         if: ${{ github.event.inputs.buildType == 'debug' || github.event.inputs.buildType == '' }}
         run: ./gradlew assembleDebug
